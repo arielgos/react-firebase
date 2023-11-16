@@ -15,6 +15,7 @@ jobs:
           cd public
           npm install
           npm run build
+          npm test
           cp -r build/* ./
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
