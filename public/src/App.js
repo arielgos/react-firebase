@@ -1,7 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import { analytics } from './Firebase';
+import { logEvent } from 'firebase/analytics';
+
 
 function App() {
+
+  logEvent(analytics, 'Application Start');
+
   return (
     <div className="App">
       <header className="App-header">
