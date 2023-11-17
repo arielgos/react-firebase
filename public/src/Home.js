@@ -27,7 +27,7 @@ const Home = () => {
         navigate("/");
       }
     });
-  }, []);
+  }, [user]);
 
   return (
     <>
