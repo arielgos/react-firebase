@@ -3,10 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { analytics } from './Firebase';
 import { logEvent } from 'firebase/analytics';
-import Signup from './Signup';
-import Login from './Login';
-import Home from './Home';
-
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 function App() {
 
