@@ -1,51 +1,51 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from '../Firebase';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { auth } from '../Firebase'
+import { useNavigate } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import * as constants from '../Common'
-import Wall from '../components/Wall';
+import Wall from '../components/Wall'
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const dataFetchedReference = useRef(false);
+  const navigate = useNavigate()
+  const [user, setUser] = useState(null)
+  const dataFetchedReference = useRef(false)
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      console.log("Signed out successfully");
-      sessionStorage.removeItem(constants.USER);
-      setUser(null);
+      console.log('Signed out successfully')
+      sessionStorage.removeItem(constants.USER)
+      setUser(null)
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      const errorCode = error.code
+      const errorMessage = error.message
       console.log(errorCode, errorMessage, error)
-    });
+    })
   }
 
   useEffect(() => {
-    if (dataFetchedReference.current) return;
-    dataFetchedReference.current = true;
+    if (dataFetchedReference.current) return
+    dataFetchedReference.current = true
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        sessionStorage.setItem(constants.USER, user);
-        setUser(user);
+        sessionStorage.setItem(constants.USER, user)
+        setUser(user)
       } else {
-        console.log("user is logged out");
-        navigate("/login");
+        console.log('user is logged out')
+        navigate('/login')
       }
-    });
-  }, [navigate]);
+    })
+  }, [navigate])
 
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand='lg' className='bg-body-tertiary'>
         <Container>
-          <Navbar.Brand href="#home">React + Firebase</Navbar.Brand>
+          <Navbar.Brand href='#home'>React + Firebase</Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
+          <Navbar.Collapse className='justify-content-end'>
             <Navbar.Text>
 
               Signed in as: <span onClick={handleLogout} title='Click to sign out'>{user != null ? user.email : ''}</span>
@@ -54,7 +54,7 @@ const Home = () => {
         </Container>
       </Navbar>
       {
-        user == null ? navigate("/login") : <Wall user={user} />
+        user == null ? navigate('/login') : <Wall user={user} />
       }
     </>
   )
