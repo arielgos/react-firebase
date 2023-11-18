@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders page', () => {
   render(<App />);
-  const linkElement = screen.getByText(/You need to enable JavaScript to run this app./i);
+  const linkElement = screen.getByText(/Signed/i);
   expect(linkElement).toBeInTheDocument();
 });
