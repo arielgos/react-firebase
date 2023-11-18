@@ -9,11 +9,12 @@ const Home = () => {
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      // Sign-out successful.
-      setUser(null);
       console.log("Signed out successfully");
+      setUser(null);
     }).catch((error) => {
-      // An error happened.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage, error)
     });
   }
 
