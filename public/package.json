@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "scan": "standard --fix  src/*.js src/pages/*.js src/components/*.js"
+    "scan": "standard src/index.js src/App.js src/Common.js src/Firebase.js src/reportWebVitals.js src/pages/*.js src/components/*.js",
+    "fix": "standard --fix src/*.js src/pages/*.js src/components/*.js"
   },
   "eslintConfig": {
     "extends": [

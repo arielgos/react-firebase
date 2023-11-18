@@ -93,10 +93,10 @@ const Wall = (props) => {
 
         <Stack gap={3} hidden={loading}>
           {
-                        texts.map((element) => (
-                          <Item key={element.id} text={element.text} user={element.user} time={element.time} />
-                        ))
-                    }
+            texts.map((element) => (
+              <Item key={element.id} text={element.text} user={element.user} time={element.time} />
+            ))
+          }
         </Stack>
       </Container>
     </>

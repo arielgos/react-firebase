@@ -11,7 +11,6 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Badge from 'react-bootstrap/Badge'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Alert from 'react-bootstrap/Alert'
-import * as constants from '../Common'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -27,8 +26,7 @@ const Login = () => {
     e.preventDefault()
     if (form.checkValidity()) {
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          sessionStorage.setItem(constants.USER, JSON.stringify(userCredential.user))
+        .then(() => {
           navigate('/')
         })
         .catch((error) => {

@@ -4,7 +4,6 @@ import { auth } from '../Firebase'
 import { useNavigate } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
-import * as constants from '../Common'
 import Wall from '../components/Wall'
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
   const handleLogout = () => {
     signOut(auth).then(() => {
       console.log('Signed out successfully')
-      sessionStorage.removeItem(constants.USER)
       setUser(null)
     }).catch((error) => {
       const errorCode = error.code
@@ -30,7 +28,6 @@ const Home = () => {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        sessionStorage.setItem(constants.USER, user)
         setUser(user)
       } else {
         console.log('user is logged out')
