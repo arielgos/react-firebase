@@ -21,6 +21,7 @@ jobs:
           
       - name: Testing & Coverage
         run: |
+          cd public
           npm test
           npm run coverage
       
@@ -28,7 +29,9 @@ jobs:
         uses: codecov/codecov-action@v1
       
       - name: Copying Files
-        run: cp -r build/* ./
+        run: |
+          cd public
+          cp -r build/* ./
 
       - name: Deploying
         uses: FirebaseExtended/action-hosting-deploy@v0
