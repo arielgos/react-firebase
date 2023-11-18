@@ -8,15 +8,30 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Building
+        run: |
           cd public
           npm install
           npm run build
+          
+      - name: Testing & Coverage
+        run: |
+          cd public
           npm test
+          npm run coverage
+    
+      - name: Copying Files
+        run: |
+          cd public
           cp -r build/* ./
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Deploying
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_FIREBASE_CCB40 }}'
+          channelId: live
           projectId: react-firebase-ccb40
